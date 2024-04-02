@@ -89,6 +89,9 @@ class Cart:
         """
 
         for product, quantity in self.products.items():
-            product.buy(quantity)
+            if not product.check_quantity(quantity):
+                raise ValueError
+            else:
+                product.quantity -= quantity
 
         self.clear()
